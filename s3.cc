@@ -1,5 +1,5 @@
 /*  Copyright (C) 2008,2012 Kyle Shank
-		This file is part of apt-s3.
+    This file is part of apt-s3.
 
     apt-s3 is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
