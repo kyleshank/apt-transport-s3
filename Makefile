@@ -11,4 +11,4 @@ s3: s3_main.o s3.o connect.o json.o
 	 gcc  -I /usr/include -I./ -g -c $<
 
 install: s3
-	cp s3 /usr/lib/apt/methods/
+	cp s3 $(DESTDIR)/usr/lib/apt/methods/
