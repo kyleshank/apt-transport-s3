@@ -1,0 +1,5 @@
+apt-transport-s3 (0.1.0-1) unstable; urgency=low
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Guilhem Lettron <guilhem@lettron.fr>  Wed, 06 Aug 2014 18:03:24 +0200
