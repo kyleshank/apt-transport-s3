@@ -907,8 +907,10 @@ void HttpMethod::SendReq(FetchItem *Itm,CircleBuf &Out)
    /* S3 Specific */
    time_t rawtime = 0;
    struct tm * timeinfo = NULL;
+   char formated_time [80] = { 0 };
    char buffer [80] = { 0 };
    char* wday = NULL;
+   char* month = NULL;
 
    time( &rawtime);
    timeinfo = gmtime( &rawtime);
@@ -925,8 +927,25 @@ void HttpMethod::SendReq(FetchItem *Itm,CircleBuf &Out)
    case 6: wday = (char*)"Sat"; break;
    }
 
-   strcat(buffer, wday);
-   strftime(buffer+3, 80, ", %d %b %Y %T %z", timeinfo);
+   switch (timeinfo->tm_mon) {
+   case 0: month = (char*)"Jan"; break;
+   case 1: month = (char*)"Feb"; break;
+   case 2: month = (char*)"Mar"; break;
+   case 3: month = (char*)"Apr"; break;
+   case 4: month = (char*)"May"; break;
+   case 5: month = (char*)"Jun"; break;
+   case 6: month = (char*)"Jul"; break;
+   case 7: month = (char*)"Aug"; break;
+   case 8: month = (char*)"Sep"; break;
+   case 9: month = (char*)"Oct"; break;
+   case 10: month = (char*)"Nov"; break;
+   case 11: month = (char*)"Dec"; break;
+   }
+
+   //%a, %d %b %Y %T %z
+   strftime(formated_time, 80, "%Y %T %z", timeinfo);
+   sprintf(buffer, "%s, %d %s %s", wday, timeinfo->tm_mday, month, formated_time);
+
    string dateString((const char*)buffer);
    Req += "Date: " + dateString + "\r\n";
 
