@@ -27,4 +27,5 @@ clean:
 	rm -f $(OBJ) $(BIN)
 
 install: s3
-	cp s3 $(DESTDIR)/usr/lib/apt/methods/
+	mkdir -p $(DESTDIR)/usr/lib/apt/methods/
+	cp $(BIN) $(DESTDIR)/usr/lib/apt/methods/
