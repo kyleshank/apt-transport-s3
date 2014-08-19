@@ -2,7 +2,7 @@ Source: apt-transport-s3
 Section: admin
 Priority: optional
 Maintainer: Guilhem Lettron <guilhem@lettron.fr>
-Build-Depends: debhelper (>= 8.0.0), libapt-pkg-dev (>= 0.7.23), libcurl4-openssl-dev
+Build-Depends: debhelper (>= 9.0.0), libapt-pkg-dev (>= 0.7.23), libcurl4-openssl-dev
 Standards-Version: 3.9.4
 Homepage: https://github.com/kyleshank/apt-s3
 
