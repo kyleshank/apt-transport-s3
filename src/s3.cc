@@ -55,7 +55,7 @@
 #include <stdio.h>
 #include <errno.h>
 #include <string.h>
-#include <apti18n.h>
+#include "apti18n.h"
 #include <openssl/hmac.h>
 #include <openssl/evp.h>
 #include <openssl/bio.h>

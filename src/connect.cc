@@ -30,7 +30,7 @@
 #include <netdb.h>
 
 #include "rfc2553emu.h"
-#include <apti18n.h>
+#include "apti18n.h"
 									/*}}}*/
 
 // #ifdef __linux__
