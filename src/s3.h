@@ -27,12 +27,18 @@
 #ifndef APT_HTTP_H
 #define APT_HTTP_H
 
-#define MAXLEN 360
+#include <apt-pkg/hashes.h>
 
+#define MAXLEN 360
 
 
 using std::cout;
 using std::endl;
+
+const string TEMP_CREDS_URL = "http://169.254.169.254/2012-01-12/meta-data/iam/security-credentials/";
+const string IAM_ROLE_SUFFIX = "-apt";
+const string USER_AGENT = "Ubuntu APT-S3/1.3";
+const string IAM_ROLE_URL_USER = "iam-role";
 
 class HttpMethod;
 
@@ -142,6 +148,24 @@ struct ServerState
    ~ServerState() {Close();};
 };
 
+class TemporaryIAMCredentials
+{
+   public:
+
+      TemporaryIAMCredentials();
+      bool Request();
+      bool Request(string aptRole);
+
+      string AccessKeyId, SecretAccessKey, Token;
+
+   protected:
+
+      bool Expired();
+
+      bool Tried, Succeeded;
+      time_t Expires;
+};
+
 class HttpMethod : public pkgAcqMethod
 {
    void SendReq(FetchItem *Itm,CircleBuf &Out);
@@ -160,6 +184,7 @@ class HttpMethod : public pkgAcqMethod
 
    protected:
    virtual bool Fetch(FetchItem *);
+   TemporaryIAMCredentials SavedIAMCredentials;
    
    public:
    friend class ServerState;
